@@ -1,7 +1,7 @@
 import numpy as np
 
 class LinearRegression:
-    def __init__(self, learning_rate=0.01, n_iterations=10000):
+    def __init__(self, learning_rate=0.01, n_iterations=10000, alpha=0.01, early_stopping=True, patience=100):
         """初始化模型参数"""
         self.learning_rate = learning_rate
         self.n_iterations = n_iterations

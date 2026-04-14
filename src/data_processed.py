@@ -14,9 +14,13 @@ def preprocess_data(data):
     X = data_encoded.drop('charges', axis=1).values
     y = data_encoded['charges'].values.reshape(-1, 1)
     
-    # 特征标准化
+    # 特征标准化（修复数据类型问题）
+    # 确保X是浮点类型
+    X = X.astype(np.float64)
     mean = np.mean(X, axis=0)
     std = np.std(X, axis=0)
+    # 处理标准差为0的情况
+    std = np.where(std == 0, 1, std)
     X_normalized = (X - mean) / std
     
     # 添加偏置项
